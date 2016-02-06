@@ -50,7 +50,7 @@
 
     if (guestbookName == null) {
 
-        guestbookName = "default";
+        guestbookName = "Mr. Blog";
 
     }
 
@@ -113,7 +113,7 @@ to create a blog post.</p>
 
         %>
 
-        <p>Guestbook '${fn:escapeXml(guestbookName)}' has no messages.</p>
+        <p>${fn:escapeXml(guestbookName)} has no posts.</p>
 
         <%
 
@@ -121,7 +121,7 @@ to create a blog post.</p>
 
         %>
 
-        <p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
+        <p>${fn:escapeXml(guestbookName)}:</p>
 
         <%
 
