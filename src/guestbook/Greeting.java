@@ -16,7 +16,7 @@ import com.googlecode.objectify.annotation.Id;
 
 @Entity
 
-public class Greeting implements Comparable<Greeting> {
+public class Greeting implements Comparable<Greeting> { // hey
 
     @Id Long id;
 
