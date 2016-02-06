@@ -70,6 +70,16 @@
 
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
+	<form action="/ofysign" method="post">
+
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+
+      <div><input type="submit" value="Post Greeting" /></div>
+
+      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
+
+    </form>    
+
 <%
 
     } else {
@@ -80,7 +90,7 @@
 
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
 
-to include your name with greetings you post.</p>
+to create a blog post.</p>
 
 <%
 
@@ -157,15 +167,7 @@ to include your name with greetings you post.</p>
 
  
 
-    <form action="/ofysign" method="post">
-
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-
-      <div><input type="submit" value="Post Greeting" /></div>
-
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-
-    </form>
+    
 
  
 
