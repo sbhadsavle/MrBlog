@@ -71,8 +71,8 @@
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
 	<form action="/ofysign" method="post">
-
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+	
+      <div><textarea name="content" rows="10" cols="120"></textarea></div>
 
       <div><input type="submit" value="Post Greeting" /></div>
 
