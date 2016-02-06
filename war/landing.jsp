@@ -45,7 +45,11 @@
 	<p>Welcome to Mr. Blog. This is a web blog where anyone can leave their thoughts. Check it out!</p>
 	
 	<img src="cartoon-man.jpg" alt="Mr. Blog" style="width:352px;height:450px;">
-		
+	
+	<div style="text-align:center">	
+		<a href="/ofyguestbook.jsp">Enter the blog</a>
+	</div>
+	
   </body>
 
 </html>
