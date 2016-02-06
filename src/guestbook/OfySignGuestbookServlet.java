@@ -2,7 +2,6 @@
 
 package guestbook;
 
- 
 
 
 import com.google.appengine.api.users.User;

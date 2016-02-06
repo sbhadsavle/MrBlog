@@ -50,7 +50,7 @@
 
     if (guestbookName == null) {
 
-        guestbookName = "default";
+        guestbookName = "Mr. Blog";
 
     }
 
@@ -71,8 +71,8 @@
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
 	<form action="/ofysign" method="post">
-
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+	
+      <div><textarea name="content" rows="10" cols="120"></textarea></div>
 
       <div><input type="submit" value="Post Greeting" /></div>
 
@@ -113,7 +113,7 @@ to create a blog post.</p>
 
         %>
 
-        <p>Guestbook '${fn:escapeXml(guestbookName)}' has no messages.</p>
+        <p> ${fn:escapeXml(guestbookName)} has no posts.</p>
 
         <%
 
@@ -121,7 +121,7 @@ to create a blog post.</p>
 
         %>
 
-        <p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
+        <p>${fn:escapeXml(guestbookName)}:</p>
 
         <%
 
