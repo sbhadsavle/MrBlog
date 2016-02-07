@@ -48,17 +48,13 @@
 	
       <div><textarea name="Title" rows="1" cols="120"></textarea></div>
 
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-
     </form>  
     
     <form action="/ofysign" method="post">
 	
-      <div><textarea name="BlogPost" rows="10" cols="120"></textarea></div>
+      <div><textarea name="content" rows="10" cols="120"></textarea></div>
 
       <div><input type="submit" value="Post Greeting" /></div>
-
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
 
     </form>  
 	

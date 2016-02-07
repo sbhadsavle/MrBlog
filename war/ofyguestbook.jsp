@@ -69,16 +69,6 @@
 <p>Hello, ${fn:escapeXml(user.nickname)}! (You can
 
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-
-	<form action="/ofysign" method="post">
-	
-      <div><textarea name="content" rows="10" cols="120"></textarea></div>
-
-      <div><input type="submit" value="Post Greeting" /></div>
-
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-
-    </form>
     
    	<div style="text-align:center">	
 		<a href="/blogEntry.jsp">Make a Post!</a>
