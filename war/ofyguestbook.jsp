@@ -66,7 +66,7 @@
 
 %>
 
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
+<p align="right">Hello, ${fn:escapeXml(user.nickname)}! (You can
 
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
     
@@ -80,7 +80,7 @@
 
 %>
 
-<p>Hello!
+<p align="right">Hello!
 
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
 
@@ -120,7 +120,11 @@ to create a blog post.</p>
         <%
 
         for (Greeting greeting : greetings) {
+        	
+            pageContext.setAttribute("greeting_title",
 
+                    greeting.getTitle());
+        	
             pageContext.setAttribute("greeting_content",
 
                                      greeting.getContent());
@@ -141,15 +145,17 @@ to create a blog post.</p>
 
                 %>
 
-                <p><b>${fn:escapeXml(greeting_user.nickname)}</b> wrote:</p>
+                <p align= "left"><i>${fn:escapeXml(greeting_user.nickname)}</i> wrote:</p>
 
                 <%
 
             }
 
             %>
-
-            <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
+          
+			<blockquote><b><em>${fn:escapeXml(greeting_title)}</em></b>
+			<p> </p>
+            ${fn:escapeXml(greeting_content)}</blockquote>
 
             <%
 

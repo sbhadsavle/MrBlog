@@ -22,15 +22,19 @@ public class Greeting implements Comparable<Greeting> { // hey
 
     User user;
 
+    String title;
+    
     String content;
 
     Date date;
 
     private Greeting() {}
 
-    public Greeting(User user, String content) {
+    public Greeting(User user, String content, String title) {
 
         this.user = user;
+        
+        this.title = title;
 
         this.content = content;
 
@@ -48,6 +52,10 @@ public class Greeting implements Comparable<Greeting> { // hey
 
         return content;
 
+    }
+    
+    public String getTitle(){
+    	return title;
     }
 
     @Override
