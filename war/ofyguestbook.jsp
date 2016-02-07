@@ -78,7 +78,11 @@
 
       <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
 
-    </form>    
+    </form>
+    
+   	<div style="text-align:center">	
+		<a href="/blogEntry.jsp">Make a Post!</a>
+	</div>    
 
 <%
 
