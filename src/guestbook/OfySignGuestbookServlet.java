@@ -48,7 +48,7 @@ public class OfySignGuestbookServlet extends HttpServlet {
 
         // Guestbook should be limited to ~1/second.
 
-        String content = req.getParameter("BlogPost");
+        String content = req.getParameter("content");
 
         Date date = new Date();
 
