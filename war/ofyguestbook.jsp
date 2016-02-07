@@ -6,6 +6,8 @@
 
 <%@ page import="guestbook.Greeting" %>
 
+<%@ page import="guestbook.OfySignGuestbookServlet" %>
+
 <%@ page import="com.googlecode.objectify.*" %>
 
 <%@ page import="com.google.appengine.api.users.User" %>
@@ -42,7 +44,6 @@
 
   <body>
 
- 
 
 <%
 
@@ -69,10 +70,21 @@
 <p align="right">Hello, ${fn:escapeXml(user.nickname)}! (You can
 
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+	
+	<form align = "right" action="/ofysign" method="post">
+    	<input type="submit" name="Subscribe/Unsubscribe" value="Subscribe/Unsubscribe" onclick = "myFunction()" />
+	</form>
+	
+	<script>
+		function myFunction(){
+			alert("Thank you")
+		}
+	</script>
     
    	<div style="text-align:center">	
 		<a href="/blogEntry.jsp">Make a Post!</a>
-	</div>    
+	</div>
+	   
 
 <%
 
