@@ -48,7 +48,7 @@
 	
 	
 	<div style="text-align:center">	
-		<a href="/ofyguestbook.jsp">Enter the blog</a>
+		<a href="/ofyguestbookConcise.jsp">Enter the blog</a>
 	</div>
 	
   </body>

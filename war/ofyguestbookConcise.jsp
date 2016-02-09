@@ -76,7 +76,7 @@
 	</form>
 	
 	<form align = "right" action="/ofysign" method="post">
-    	<input type="submit" name="See All Posts" value="See Most Recent Posts" />
+    	<input type="submit" name="See All Posts" value="See All Posts" />
 	</form>
 	
 	<script>
@@ -135,7 +135,11 @@ to create a blog post.</p>
 
         <%
 
+        int size = 1;
+        
         for (Greeting greeting : greetings) {
+        	
+        	if(size <= 3){
         	
             pageContext.setAttribute("greeting_title",
 
@@ -174,7 +178,8 @@ to create a blog post.</p>
             ${fn:escapeXml(greeting_content)}</blockquote>
 
             <%
-
+        	}
+        	size += 1;
         }
 
     }
