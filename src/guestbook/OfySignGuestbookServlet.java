@@ -34,8 +34,9 @@ public class OfySignGuestbookServlet extends HttpServlet {
 	
 	private boolean isConcise = true;
 	
-	static HashSet<String> emails = new HashSet<String>();
+	static ArrayList<String> emails;
 	
+	//static HashSet<String> emails = new HashSet<String>();
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 
@@ -44,6 +45,7 @@ public class OfySignGuestbookServlet extends HttpServlet {
         UserService userService = UserServiceFactory.getUserService();
 
         User user = userService.getCurrentUser();
+        
 
         if (req.getParameter("Subscribe/Unsubscribe") != null){
         	this.toggleSubscription();
@@ -77,7 +79,9 @@ public class OfySignGuestbookServlet extends HttpServlet {
 		isConcise = !isConcise;
 	}
 	
-	public void toggleSubscription(){
+	public void toggleSubscription(){		
+		emails = (ArrayList<String>) ObjectifyService.ofy().load().type(String.class).list();
+		ObjectifyService.ofy().delete().type(String.class);
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		String email = user.getNickname();
@@ -87,8 +91,8 @@ public class OfySignGuestbookServlet extends HttpServlet {
 		else{
 			emails.add(email);
 		}
-		for(String em: emails){
-			System.out.println(em);
+		for(String str: emails){
+			ofy().save().entity(str).now();
 		}
 		
 	}
