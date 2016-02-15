@@ -32,6 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class OfySignGuestbookServlet extends HttpServlet {
 	
+	private boolean isConcise = true;
+	
 	HashSet<User> users = new HashSet<User>();
 	static HashSet<String> emails = new HashSet<String>();
 	
@@ -56,6 +58,9 @@ public class OfySignGuestbookServlet extends HttpServlet {
         if (req.getParameter("Subscribe/Unsubscribe") != null){
         	this.toggleSubscription();
         }
+        else if (req.getParameter("See All Posts") != null){
+        	this.toggleView();
+        }
         else {
 	        String content = req.getParameter("content");
 	        
@@ -67,9 +72,19 @@ public class OfySignGuestbookServlet extends HttpServlet {
 	
 	        ofy().save().entity(greeting).now();
         }
-        resp.sendRedirect("/ofyguestbook.jsp");
+        
+        if(isConcise){
+    		resp.sendRedirect("/ofyguestbookConcise.jsp");
+    	}
+    	else{
+            resp.sendRedirect("/ofyguestbook.jsp");
+    	}
 
     }
+	
+	public void toggleView(){
+		isConcise = !isConcise;
+	}
 	
 	public void toggleSubscription(){
 //		UserService userService = UserServiceFactory.getUserService();
