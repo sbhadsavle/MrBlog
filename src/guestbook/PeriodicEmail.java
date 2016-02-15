@@ -31,7 +31,10 @@ public class PeriodicEmail extends HttpServlet{
 
             throws IOException {
 
-	for(String str: OfySignGuestbookServlet.emails){	
+	for(String str: OfySignGuestbookServlet.emails){
+		if(!str.contains("@gmail.com") && !str.contains("@utexas.edu")){
+			str = str + "@gmail.com";
+		}
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
