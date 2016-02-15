@@ -39,6 +39,15 @@ import javax.servlet.http.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
  
 
 public class SendEmail extends HttpServlet {
@@ -46,6 +55,7 @@ public class SendEmail extends HttpServlet {
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response)
     throws ServletException, IOException {
+				
 		// Recipient's email ID needs to be mentioned.
 		String to = "sarang.bhadsavle@gmail.com";
 		
@@ -59,10 +69,10 @@ public class SendEmail extends HttpServlet {
 		Properties properties = System.getProperties();
 		
 		// Setup mail server
-		properties.setProperty("mail.smtp.host", host);
+		//properties.setProperty("mail.smtp.host", host);
 		
 		// Get the default Session object.
-		Session session = Session.getDefaultInstance(properties);
+		Session session = Session.getDefaultInstance(properties, null);
 		
 		// Set response content type
 		response.setContentType("text/html");
