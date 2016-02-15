@@ -37,6 +37,8 @@ public class OfySignGuestbookServlet extends HttpServlet {
 	HashSet<User> users = new HashSet<User>();
 	static HashSet<String> emails = new HashSet<String>();
 	
+	int count = 0;
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 
                 throws IOException {
@@ -80,6 +82,9 @@ public class OfySignGuestbookServlet extends HttpServlet {
             resp.sendRedirect("/ofyguestbook.jsp");
     	}
 
+        count += 1;
+        System.out.println("Yo " + count);
+        
     }
 	
 	public void toggleView(){
@@ -87,17 +92,6 @@ public class OfySignGuestbookServlet extends HttpServlet {
 	}
 	
 	public void toggleSubscription(){
-//		UserService userService = UserServiceFactory.getUserService();
-//		User user = userService.getCurrentUser();
-//		if (users.contains(user)){
-//			users.remove(user);
-//		}
-//		else {
-//			users.add(user);
-//		}
-//		for (User us : users){
-//			System.out.println(user.getNickname());
-//		}
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		String email = user.getNickname();

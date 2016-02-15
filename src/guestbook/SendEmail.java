@@ -92,6 +92,7 @@ public class SendEmail extends HttpServlet {
 		 message.setText("This is actual message");
 		 // Send message
 		 Transport.send(message);
+		 System.out.println("Works");
 		 String title = "Send Email";
 		 String res = "Sent message successfully....";
 		 String docType =
