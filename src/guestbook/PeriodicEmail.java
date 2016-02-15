@@ -31,6 +31,7 @@ public class PeriodicEmail extends HttpServlet{
 
             throws IOException {
 
+	for(String str: OfySignGuestbookServlet.emails){	
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
@@ -40,7 +41,7 @@ public class PeriodicEmail extends HttpServlet{
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Example.com Admin"));
             msg.addRecipient(Message.RecipientType.TO,
-                             new InternetAddress("andojianurag@utexas.edu", "Mr. User"));
+                             new InternetAddress(str, "Mr. User"));
             msg.setSubject("Your Example.com account has been activated");
             msg.setText(msgBody);
             Transport.send(msg);
@@ -50,6 +51,7 @@ public class PeriodicEmail extends HttpServlet{
         } catch (MessagingException e) {
             // ...
         }
+	}
     
     }
 	
