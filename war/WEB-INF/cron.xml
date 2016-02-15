@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
     <cron>
-        <url>/PeriodicEmail</url>
+        <url></url>
         <description>Sends emails about updates</description>
-        <schedule>every 1 minutes</schedule>
+        <schedule>every 5 minutes</schedule>
     </cron>
 </cronentries>

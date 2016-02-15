@@ -14,24 +14,43 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 public class PeriodicEmail extends HttpServlet{
-	
-	int count = 0;
-	
+		
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 
             throws IOException {
 
-    UserService userService = UserServiceFactory.getUserService();
+        Properties props = new Properties();
+        Session session = Session.getDefaultInstance(props, null);
 
-    User user = userService.getCurrentUser();
-    
-    count += 1;
+        String msgBody = "...";
 
-    System.out.println("Yo " + count);
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Example.com Admin"));
+            msg.addRecipient(Message.RecipientType.TO,
+                             new InternetAddress("andojianurag@utexas.edu", "Mr. User"));
+            msg.setSubject("Your Example.com account has been activated");
+            msg.setText(msgBody);
+            Transport.send(msg);
+
+        } catch (AddressException e) {
+            // ...
+        } catch (MessagingException e) {
+            // ...
+        }
     
-	resp.sendRedirect("/ofyguestbookConcise.jsp");
     }
 	
 
