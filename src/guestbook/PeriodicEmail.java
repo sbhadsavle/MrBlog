@@ -51,6 +51,9 @@ public class PeriodicEmail extends HttpServlet{
 		    }
 		    
 		}
+		else{
+			return;
+		}
 		
 	for(Stringey str: OfySignGuestbookServlet.emails){
 		if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
