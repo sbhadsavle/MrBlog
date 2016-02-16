@@ -35,17 +35,22 @@ public class PeriodicEmail extends HttpServlet{
             throws IOException {
 
 		List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();
-		if(greetings != null){
-			Greeting g = greetings.get(0);
-			long t1 = g.date.getTime();
+		long timeDiff = 0;
+		long postTime = 0;
+		long currentTime = 0;
+		Greeting g = null;
+		if(greetings != null || greetings.size() > 0){
+			g = greetings.get(0);
+			postTime = g.date.getTime();
 
-			Calendar calendar1 = Calendar.getInstance();
-		    calendar1.set(1970, 01, 01);
-		    long t2 = calendar1.getTimeInMillis();
+//			Calendar calendar1 = Calendar.getInstance();
+//		    calendar1.set(1970, 01, 01);
+//		    currentTime = calendar1.getTimeInMillis();
+			currentTime = System.currentTimeMillis();
 		    
-		    long timeDiff = t2 - t1;
+		    timeDiff = currentTime - postTime;
 		    //long mill24 = 24*60*60*1000;
-		    long mill24 = 3*60*1000;
+		    long mill24 = 2*60*1000;
 		    if(timeDiff > mill24){
 		    	return;
 		    }
@@ -58,11 +63,11 @@ public class PeriodicEmail extends HttpServlet{
 	for(Stringey str: OfySignGuestbookServlet.emails){
 		if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
 			str.string = str.string + "@gmail.com";
-	}
+		}
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
-        String msgBody = "...";
+        String msgBody = "timeDiff is " + timeDiff + "\n content is " + g.getContent() + "\n postTime is " + postTime + "\n currentTime is " + currentTime;
 
         try {
             Message msg = new MimeMessage(session);
