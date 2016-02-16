@@ -31,9 +31,9 @@ public class PeriodicEmail extends HttpServlet{
 
             throws IOException {
 
-	for(String str: OfySignGuestbookServlet.emails){
-		if(!str.contains("@gmail.com") && !str.contains("@utexas.edu")){
-			str = str + "@gmail.com";
+	for(Stringey str: OfySignGuestbookServlet.emails){
+		if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
+			str.string = str.string + "@gmail.com";
 		}
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
@@ -44,7 +44,7 @@ public class PeriodicEmail extends HttpServlet{
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Example.com Admin"));
             msg.addRecipient(Message.RecipientType.TO,
-                             new InternetAddress(str, "Mr. User"));
+                             new InternetAddress(str.string, "Mr. User"));
             msg.setSubject("Your Example.com account has been activated");
             msg.setText(msgBody);
             Transport.send(msg);

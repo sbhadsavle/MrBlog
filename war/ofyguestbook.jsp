@@ -6,6 +6,8 @@
 
 <%@ page import="guestbook.Greeting" %>
 
+<%@ page import="guestbook.Stringey" %>
+
 <%@ page import="guestbook.OfySignGuestbookServlet" %>
 
 <%@ page import="com.googlecode.objectify.*" %>
@@ -72,7 +74,11 @@
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 	
 	<form align = "right" action="/ofysign" method="post">
-    	<input type="submit" name="Subscribe/Unsubscribe" value="Subscribe/Unsubscribe" onclick = "myFunction()" />
+    	<input type="submit" name="Subscribe" value="Subscribe" onclick = "myFunction1()" />
+	</form>
+	
+	<form align = "right" action="/ofysign" method="post">
+    	<input type="submit" name="Unsubscribe" value="Unsubscribe" onclick = "myFunction2()" />
 	</form>
 	
 	<form align = "right" action="/ofysign" method="post">
@@ -80,8 +86,12 @@
 	</form>
 	
 	<script>
-		function myFunction(){
-			alert("Thank you")
+		function myFunction1(){
+			alert("Thank you for Subscribing")
+		}
+		
+		function myFunction2(){
+			alert("You have Unsubscribed")
 		}
 	</script>
     
@@ -114,6 +124,7 @@ to create a blog post.</p>
 
 
 	ObjectifyService.register(Greeting.class);
+	ObjectifyService.register(Stringey.class);
 
 	List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();   
 
