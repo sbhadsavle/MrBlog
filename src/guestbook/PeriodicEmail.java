@@ -42,14 +42,9 @@ public class PeriodicEmail extends HttpServlet{
 		if(greetings != null || greetings.size() > 0){
 			g = greetings.get(0);
 			postTime = g.date.getTime();
-
-//			Calendar calendar1 = Calendar.getInstance();
-//		    calendar1.set(1970, 01, 01);
-//		    currentTime = calendar1.getTimeInMillis();
 			currentTime = System.currentTimeMillis();
 		    
 		    timeDiff = currentTime - postTime;
-		    //long mill24 = 24*60*60*1000;
 		    long mill24 = 2*60*1000;
 		    if(timeDiff > mill24){
 		    	return;
@@ -60,7 +55,15 @@ public class PeriodicEmail extends HttpServlet{
 			return;
 		}
 		
-	for(Stringey str: OfySignGuestbookServlet.emails){
+		if(OfySignGuestbookServlet.emails == null){
+			return;
+		}
+		
+		if(OfySignGuestbookServlet.emails.size() <= 0){
+			return;
+		}
+		
+		for(Stringey str: OfySignGuestbookServlet.emails){
 		if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
 			str.string = str.string + "@gmail.com";
 		}
