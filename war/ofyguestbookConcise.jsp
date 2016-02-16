@@ -82,7 +82,7 @@
 	</form>
 	
 	<form align = "right" action="/ofysign" method="post">
-    	<input type="submit" name="See All Posts" value="See Most Recent Posts" />
+    	<input type="submit" name="See All Posts" value="See All Posts" />
 	</form>
 	
 	<script>
