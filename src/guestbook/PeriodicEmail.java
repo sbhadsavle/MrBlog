@@ -35,7 +35,7 @@ public class PeriodicEmail extends HttpServlet{
             throws IOException {
 
 		List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();
-		if(greetings != null){
+		if(greetings != null || greetings.size() > 0){
 			Greeting g = greetings.get(0);
 			long t1 = g.date.getTime();
 
