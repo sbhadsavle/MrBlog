@@ -3,6 +3,6 @@
     <cron>
         <url>/PeriodicEmail</url>
         <description>Sends emails about updates</description>
-        <schedule>every 5 minutes</schedule>
+        <schedule>every 4 minutes</schedule>
     </cron>
 </cronentries>

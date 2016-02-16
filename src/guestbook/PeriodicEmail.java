@@ -3,7 +3,9 @@ package guestbook;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.googlecode.objectify.ObjectifyService;
 
 import java.util.Properties;
 
@@ -31,10 +34,28 @@ public class PeriodicEmail extends HttpServlet{
 
             throws IOException {
 
+		List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();
+		if(greetings != null){
+			Greeting g = greetings.get(0);
+			long t1 = g.date.getTime();
+
+			Calendar calendar1 = Calendar.getInstance();
+		    calendar1.set(1970, 01, 01);
+		    long t2 = calendar1.getTimeInMillis();
+		    
+		    long timeDiff = t2 - t1;
+		    //long mill24 = 24*60*60*1000;
+		    long mill24 = 3*60*1000;
+		    if(timeDiff > mill24){
+		    	return;
+		    }
+		    
+		}
+		
 	for(Stringey str: OfySignGuestbookServlet.emails){
 		if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
 			str.string = str.string + "@gmail.com";
-		}
+	}
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
