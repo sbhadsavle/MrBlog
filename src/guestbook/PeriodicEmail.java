@@ -5,6 +5,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -36,17 +37,14 @@ public class PeriodicEmail extends HttpServlet{
             throws IOException {
 
 		List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();
-		long timeDiff = 0;
-		long postTime = 0;
-		long currentTime = 0;
-		Greeting g = null;
+		Collections.sort(greetings);
 		ArrayList<String> titles = new ArrayList<String>(0);
 		ArrayList<String> messages = new ArrayList<String>(0);
 		if(greetings != null && greetings.size() > 0){
 			long pT = 0;
 			long cT = System.currentTimeMillis();
 			long tD = 0;
-			long m24 = 30*60*1000;
+			long m24 = 24*60*60*1000;
 			for(Greeting grt : greetings){
 				pT = grt.date.getTime();
 				tD = cT - pT;
@@ -55,16 +53,6 @@ public class PeriodicEmail extends HttpServlet{
 					titles.add(grt.getTitle());
 				}
 			}
-			
-//			g = greetings.get(0);
-//			postTime = g.date.getTime();
-//			currentTime = System.currentTimeMillis();
-//		    
-//		    timeDiff = currentTime - postTime;
-//		    long mill24 = 30*60*1000;
-//		    if(timeDiff > mill24){
-//		    	return;
-//		    }
 		    
 		}
 		else{
@@ -79,35 +67,32 @@ public class PeriodicEmail extends HttpServlet{
 			return;
 		}
 		
-	    for(Stringey str: OfySignGuestbookServlet.emails){
+		for(Stringey str: OfySignGuestbookServlet.emails){
 			if(!str.string.contains("@gmail.com") && !str.string.contains("@utexas.edu")){
 				str.string = str.string + "@gmail.com";
 			}
 	        Properties props = new Properties();
 	        Session session = Session.getDefaultInstance(props, null);
 	
-	        //String msgBody = "timeDiff is " + timeDiff + "\n content is " + g.getContent() + "\n postTime is " + postTime + "\n currentTime is " + currentTime;
 	        String msgBody = "";
 	        
 	        for(int i = 0; i < titles.size(); i++){
-	        	msgBody += titles.get(i) + "\n" + messages.get(i) + "\n\n";
+	        	msgBody += "Title: " + titles.get(i) + "\n" + "Message: " + messages.get(i) + "\n\n";
 	        }
 	        
 	        try {
 	            Message msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Example.com Admin"));
+	            msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Mr.Blog"));
 	            msg.addRecipient(Message.RecipientType.TO,
 	                             new InternetAddress(str.string, "Mr. User"));
-	            msg.setSubject("Your Example.com account has been activated");
+	            msg.setSubject("Mr.Blog updates!");
 	            msg.setText(msgBody);
 	            Transport.send(msg);
 	
 	        } catch (AddressException e) {
-	            // ...
 	        } catch (MessagingException e) {
-	            // ...
 	        }
-	}
+		}
     
     }
 	
