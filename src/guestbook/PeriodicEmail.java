@@ -39,13 +39,13 @@ public class PeriodicEmail extends HttpServlet{
 		long postTime = 0;
 		long currentTime = 0;
 		Greeting g = null;
-		if(greetings != null || greetings.size() > 0){
+		if(greetings != null && greetings.size() > 0){
 			g = greetings.get(0);
 			postTime = g.date.getTime();
 			currentTime = System.currentTimeMillis();
 		    
 		    timeDiff = currentTime - postTime;
-		    long mill24 = 2*60*1000;
+		    long mill24 = 30*60*1000;
 		    if(timeDiff > mill24){
 		    	return;
 		    }
@@ -70,14 +70,15 @@ public class PeriodicEmail extends HttpServlet{
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
-        String msgBody = "timeDiff is " + timeDiff + "\n content is " + g.getContent() + "\n postTime is " + postTime + "\n currentTime is " + currentTime;
-
+        //String msgBody = "timeDiff is " + timeDiff + "\n content is " + g.getContent() + "\n postTime is " + postTime + "\n currentTime is " + currentTime;
+        String msgBody = "Hey, this is a test email. \n\n" + "timeDiff is " + timeDiff + "\n content is " + g.getContent() + "\n postTime is " + postTime + "\n currentTime is " + currentTime;;
+        
         try {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("sarang.bhadsavle@gmail.com", "Example.com Admin"));
             msg.addRecipient(Message.RecipientType.TO,
                              new InternetAddress(str.string, "Mr. User"));
-            msg.setSubject("Your Example.com account has been activated");
+            msg.setSubject("Latest Updates on Mr. Blog");
             msg.setText(msgBody);
             Transport.send(msg);
 
