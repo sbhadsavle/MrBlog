@@ -5,6 +5,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class PeriodicEmail extends HttpServlet{
             throws IOException {
 
 		List<Greeting> greetings = ObjectifyService.ofy().load().type(Greeting.class).list();
+		Collections.sort(greetings);
 		long timeDiff = 0;
 		long postTime = 0;
 		long currentTime = 0;
@@ -47,7 +49,7 @@ public class PeriodicEmail extends HttpServlet{
 			long pT = 0;
 			long cT = System.currentTimeMillis();
 			long tD = 0;
-			long m24 = 30*60*1000;
+			long m24 = 5*60*1000;
 			for(Greeting grt : greetings){
 				pT = grt.date.getTime();
 				tD = cT - pT;

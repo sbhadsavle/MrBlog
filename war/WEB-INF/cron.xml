@@ -3,6 +3,7 @@
     <cron>
         <url>/PeriodicEmail</url>
         <description>Sends emails about updates</description>
-        <schedule>every 20 minutes</schedule>
+        <schedule>every day 14:42</schedule>
+        <timezone>America/Chicago</timezone>
     </cron>
 </cronentries>
